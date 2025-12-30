@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Journey</title>
+<style>
+body{
+  font-family: 'Segoe UI', sans-serif;
+  background:#fff0f6;
+  padding:15px;
+  color:#444;
+}
+.card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.05);
+}
+h2{color:#ff6fa1}
+input, textarea{
+  width:100%;
+  border:none;
+  border-radius:8px;
+  padding:8px;
+  background:#fce4ec;
+}
+button{
+  background:#ff6fa1;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:10px;
+  margin-top:6px;
+}
+</style>
+</head>
+<body>
+
+<h2>🌸 My Journey</h2>
+
+<div class="card">
+  <h3>📝 To Do Hari Ini</h3>
+  <textarea id="todo"></textarea>
+  <button onclick="saveTodo()">Simpan</button>
+</div>
+
+<div class="card">
+  <h3>⏰ Absen</h3>
+  Bangun: <input type="time" id="wake"><br><br>
+  Tidur: <input type="time" id="sleep"><br>
+  <button onclick="saveTime()">Simpan Jam</button>
+</div>
+
+<div class="card">
+  <h3>📊 Produktivitas</h3>
+  Selesai hari ini: <input type="number" id="done"><br>
+  Total task: <input type="number" id="total"><br>
+  <button onclick="calc()">Hitung</button>
+  <p id="result"></p>
+</div>
+
+<script>
+function saveTodo(){
+  localStorage.setItem("todo", todo.value);
+}
+todo.value = localStorage.getItem("todo") || "";
+
+function saveTime(){
+  localStorage.setItem("wake", wake.value);
+  localStorage.setItem("sleep", sleep.value);
+}
+wake.value = localStorage.getItem("wake") || "";
+sleep.value = localStorage.getItem("sleep") || "";
+
+function calc(){
+  let d = done.value, t = total.value;
+  let p = Math.round((d/t)*100);
+  result.innerHTML = "Hari ini produktif: " + p + "%";
+}
+</script>
+
+</body>
+</html>
